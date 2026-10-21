@@ -18,7 +18,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-lg font-bold text-gray-900">Daftar Master Pembelian Tiket</h3>
-                    <a href="{{ route('events.create') }}" class="bg-indigo-600 text-white px-4 py-2 rounded text-sm font-semibold hover:bg-indigo-700">
+                    <a href="{{ route('admin.events.create') }}" class="bg-indigo-600 text-white px-4 py-2 rounded text-sm font-semibold hover:bg-indigo-700">
                         + Tambah Event Baru
                     </a>
                 </div>
@@ -40,8 +40,8 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $event->category }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Rp {{ number_format($event->ticket_price, 0, ',', '.') }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="{{ route('events.edit', $event->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit</a>
-                                        <form action="{{ route('events.destroy', $event->id) }}" method="POST" class="inline">
+                                        <a href="{{ route('admin.events.edit', $event->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit</a>
+                                        <form action="{{ route('admin.events.destroy', $event->id) }}" method="POST" class="inline">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('Yakin ingin menghapus event ini?')">Hapus</button>

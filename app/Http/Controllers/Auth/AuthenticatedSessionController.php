@@ -28,7 +28,15 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        $user = Auth::user();
+
+        // JIKA ADMIN, LEMPAR LANGSUNG KE DASHBOARD ADMIN
+        if ($user->role === 'admin') {
+            return redirect()->route('admin.dashboard');
+        }
+
+        // JIKA CUSTOMER, LEMPAR KE KATALOG TIKET
+        return redirect()->route('events.index');
     }
 
     /**

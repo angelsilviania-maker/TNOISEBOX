@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            
+
             @if(session('success'))
                 <div class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
                     <span class="block sm:inline">{{ session('success') }}</span>
@@ -16,19 +16,19 @@
 
             <!-- FILTER KATEGORI -->
             <div class="flex flex-wrap gap-2 mb-8 justify-center">
-                <a href="{{ route('events.index') }}" 
+                <a href="{{ route('events.index') }}"
                    class="px-5 py-2 rounded-full text-sm font-semibold transition shadow-sm {{ !request('category') ? 'bg-indigo-600 text-white shadow-indigo-200' : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200' }}">
                     Semua
                 </a>
-                <a href="{{ route('events.index', ['category' => 'Musik']) }}" 
+                <a href="{{ route('events.index', ['category' => 'Musik']) }}"
                    class="px-5 py-2 rounded-full text-sm font-semibold transition shadow-sm {{ request('category') == 'Musik' ? 'bg-indigo-600 text-white shadow-indigo-200' : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200' }}">
                     🎵 Musik
                 </a>
-                <a href="{{ route('events.index', ['category' => 'Festival']) }}" 
+                <a href="{{ route('events.index', ['category' => 'Festival']) }}"
                    class="px-5 py-2 rounded-full text-sm font-semibold transition shadow-sm {{ request('category') == 'Festival' ? 'bg-indigo-600 text-white shadow-indigo-200' : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200' }}">
                     🎪 Festival
                 </a>
-                <a href="{{ route('events.index', ['category' => 'Seminar']) }}" 
+                <a href="{{ route('events.index', ['category' => 'Seminar']) }}"
                    class="px-5 py-2 rounded-full text-sm font-semibold transition shadow-sm {{ request('category') == 'Seminar' ? 'bg-indigo-600 text-white shadow-indigo-200' : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200' }}">
                     🎓 Seminar
                 </a>

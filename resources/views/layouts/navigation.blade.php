@@ -6,7 +6,7 @@
                 <!-- Logo / Brand -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('events.index') }}" class="font-bold text-xl text-indigo-600 tracking-wide">
-                       NOISEBOX
+                        NOISEBOX
                     </a>
                 </div>
 
@@ -17,9 +17,11 @@
                     </x-nav-link>
 
                     @auth
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                            {{ __('Dashboard Admin') }}
-                        </x-nav-link>
+                        @if(Auth::user()->role === 'admin')
+                            <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                                {{ __('Dashboard Admin') }}
+                            </x-nav-link>
+                        @endif
                     @endauth
                 </div>
             </div>
@@ -41,9 +43,11 @@
                             </x-slot>
 
                             <x-slot name="content">
-                                <x-dropdown-link :href="route('dashboard')">
-                                    {{ __('Dashboard') }}
-                                </x-dropdown-link>
+                                @if(Auth::user()->role === 'admin')
+                                    <x-dropdown-link :href="route('admin.dashboard')">
+                                        {{ __('Dashboard Admin') }}
+                                    </x-dropdown-link>
+                                @endif
                                 <x-dropdown-link :href="route('profile.edit')">
                                     {{ __('Profil Saya') }}
                                 </x-dropdown-link>
@@ -86,9 +90,11 @@
                 {{ __('Katalog Konser') }}
             </x-responsive-nav-link>
             @auth
-                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                    {{ __('Dashboard Admin') }}
-                </x-responsive-nav-link>
+                @if(Auth::user()->role === 'admin')
+                    <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                        {{ __('Dashboard Admin') }}
+                    </x-responsive-nav-link>
+                @endif
             @endauth
         </div>
 

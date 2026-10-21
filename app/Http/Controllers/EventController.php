@@ -12,18 +12,18 @@ class EventController extends Controller
      * Display a listing of the resource. (Katalog Publik & Admin Index)
      */
     public function index(Request $request)
-{
-    $query = Event::query();
+    {
+        $query = Event::query();
 
-    // Filter berdasarkan kategori jika ada request 'category'
-    if ($request->has('category') && $request->category != '') {
-        $query->where('category', $request->category);
+        // Filter berdasarkan kategori jika ada request 'category'
+        if ($request->has('category') && $request->category != '') {
+            $query->where('category', $request->category);
+        }
+
+        $events = $query->latest()->get();
+
+        return view('events.index', compact('events'));
     }
-
-    $events = $query->latest()->get();
-
-    return view('events.index', compact('events'));
-}
 
     /**
      * Show the form for creating a new resource. (Form Tambah Event - Admin)
@@ -59,7 +59,7 @@ class EventController extends Controller
             'image' => $imagePath,
         ]);
 
-        return redirect()->route('events.index')->with('success', 'Event berhasil ditambahkan!');
+        return redirect()->route('admin.dashboard')->with('success', 'Event berhasil ditambahkan!');
     }
 
     /**
@@ -107,7 +107,7 @@ class EventController extends Controller
             'image' => $imagePath,
         ]);
 
-        return redirect()->route('events.index')->with('success', 'Event berhasil diperbarui!');
+        return redirect()->route('admin.dashboard')->with('success', 'Event berhasil diperbarui!');
     }
 
     /**
@@ -118,9 +118,9 @@ class EventController extends Controller
         if ($event->image) {
             Storage::disk('public')->delete($event->image);
         }
-        
+
         $event->delete();
 
-        return redirect()->route('events.index')->with('success', 'Event berhasil dihapus!');
+        return redirect()->route('admin.dashboard')->with('success', 'Event berhasil dihapus!');
     }
 }

@@ -16,12 +16,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
+        // 1. Akun khusus Admin
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'tiket@gmail.com',
-            'password' => Hash::make('password'),
+            'name' => 'Administrator',
+            'email' => 'admin@gmail.com', // Ubah email admin kamu di sini
+            'password' => Hash::make('password123'),
+            'role' => 'admin', // <--- INI WAJIB ADA SUPAYA JADI ADMIN
+        ]);
+
+        // 2. Akun khusus Customer / Pelanggan
+        User::factory()->create([
+            'name' => 'Pelanggan',
+            'email' => 'customer@gmail.com',
+            'password' => Hash::make('password123'),
+            'role' => 'customer',
         ]);
 
         $this->call([
